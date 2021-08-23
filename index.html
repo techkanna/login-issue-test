@@ -45,12 +45,18 @@
     FB.getLoginStatus(function(response) {
     statusChangeCallback(response);
     
+    
   });
   };
 
   // ------
   function statusChangeCallback(res){
     console.log(res);
+    if(res.status == 'connected'){
+      FB.api('/me', {fields: 'name, email'}, function(response) {
+        console.log("response :-> ", response);
+      })
+    }
     document.querySelector(".output").textContent = JSON.stringify(res, undefined, 2);
   }
   // ------
